@@ -1,11 +1,13 @@
 <?php
 
+$pathToDeployKey = "/home3/adamfake/public_html/deploy/deploy.rsa";
+
 function logDebug($msg = "") {
     file_put_contents("deploy.log", print_r($msg , true) . "\n\n", FILE_APPEND);
 }
 
 $postBody = json_decode(file_get_contents( 'php://input'), true);
-// logDebug($postBody);
+logDebug($postBody);
 
 if ($postBody == null) {
     logDebug("Payload is null");
@@ -34,14 +36,12 @@ if (is_dir($repoFolder)) {
 
     logDebug("-- PULL MASTER ");
     logDebug("------------------------------------------------------------------");
-    $cmd = "cd {$repoFolder}; GIT_SSH_COMMAND='ssh -i deploy/deploy.rsa'  git pull origin master > deploy.log";
+    $cmd = "cd {$repoFolder}; git pull origin master";
     logDebug("cmd = {$cmd}");
     $execResult = array();
     exec($cmd, $execResult);
     logDebug("-- PULL RESULT ");
     logDebug(join("\n", $execResult));
-
-
 
 } else {
 
@@ -49,9 +49,8 @@ if (is_dir($repoFolder)) {
     logDebug("Folder DOES NOT exist: {$repoFolder}");
 
     logDebug("-- CLONE REPO ");
-    $cmd = "cd {$wwwFolder}; GIT_SSH_COMMAND='ssh -i deploy/deploy.rsa' git clone {$postBody['repository']['ssh_url']} > deploy.log";
+    $cmd = "cd {$wwwFolder}; git clone 'ext::ssh -i {$pathToDeployKey} git@github.com %S {$postBody['repository']['full_name']}.git'";
     logDebug("cmd = {$cmd}");
-
     $execResult = array();
     exec($cmd, $execResult);
     logDebug("-- CLONE RESULT ");
