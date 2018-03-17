@@ -7,15 +7,21 @@ help:
 	@echo "   make push"
 
 clean:
-	@rm phpunit-7.phar
+	@rm -f phpunit 2>/dev/null
 
-configure:
-	@wget -O phpunit https://phar.phpunit.de/phpunit-7.phar
+get-phpuinit:
+	@echo "Download PHPUnit"
+	@curl -o phpunit -L "https://phar.phpunit.de/phpunit-7.phar" 2> /dev/null
 	@chmod +x phpunit
+	@echo "Verify PHPUnit"
 	@./phpunit --version
+
+configure: get-phpuinit
 
 test:
 	echo "Test the endpoints"
+
+
 
 push:
 	echo "push to master"

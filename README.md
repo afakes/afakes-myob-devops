@@ -1,30 +1,85 @@
 
-# Project Title
-  Adam Fakes' response to 'MYOB - Platform Enablement Technical Test'
+'MYOB - Platform Enablement Technical Test' by Adam Fakes
+=========================================================
 
+# 1. Overview
 
-## Getting Started
+## 1.1. Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-
-### Quick version
-- 
-
-git clone git@github.com:afakes/afakes-myob-devops.git 
-
-
-### Prerequisites
-
+## 1.2 Prerequisites
 
 What things you need to install the software and how to install them
 
-```
-GIT -  
-```
+* [git](https://git-scm.com/) - distributed version control system 
+* [Make](https://en.wikipedia.org/wiki/Makefile) - Makefile build system
+* [PHP](http://www.php.net/) - Language
+* [PHPUnit](https://phpunit.de/getting-started/phpunit-6.html) - Testing
+* [Apache](https://httpd.apache.org/) - Apache HTTP Server Project 
 
-### Installing
+
+## 1.3 Contributing
+
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## 1.4 Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/afakes/afakes-myob-devops/tags). 
+
+## 1.5 Authors
+
+* **Adam Fakes** - *Initial work* - [adam@datavi.co](mailto:adam@datavi.co), [linkedIn](https://www.linkedin.com/in/adamfakes/).  
+
+## 1.6 License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## 1.7 Acknowledgments
+
+* [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds) 
+* [Tim Berners-lee](https://en.wikipedia.org/wiki/Tim_Berners-Lee)
+
+
+# 2. Installing
 Here we describe how to retrieve the sources code and install any prerequisites
 
+**Quick version**
+ - git clone git@github.com:afakes/afakes-myob-devops.git 
+ - make clean configure
+ - make test
+ - validate deployment hook - GitHUB
+ - make deploy
+
+
+## 2.1 Clone 
+_Clone the GitHUB repository_
+```bash
+git clone git@github.com:afakes/afakes-myob-devops.git
+```
+
+## 2.2 Configure 
+validate we have the required prerequisite software to execute from this location
+
+```bash
+make configure
+```
+
+## 2.3 Test 
+execute local tests, and pre-eflight remote tests
+
+```bash
+make test
+```
+
+## 2.4 Github Webhook  
+This code base will make use of the GitHUB webhook system to allow delivery of software to the end host.
+
+ * Open browser
+ * Navigate to: ```https://github.com/afakes/afakes-myob-devops/settings/hooks```
+ * 
+
+
+## 2.5 Deploy 
 
 
 Say what the step will be
@@ -67,36 +122,6 @@ Give an example
 ```
 
 
-
-## Built With
-
-* [Make](https://en.wikipedia.org/wiki/Makefile) - Makefile build system
-* [PHP](http://www.php.net/) - Language
-* [Composer](https://getcomposer.org/) - Dependency Management
-* [Apache](https://httpd.apache.org/) - Apache HTTP Server Project 
-
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/afakes/afakes-myob-devops/tags). 
-
-## Authors
-
-* **Adam Fakes** - *Initial work* - [adam@datavi.co](mailto:adam@datavi.co), [linkedIn](https://www.linkedin.com/in/adamfakes/).  
-
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds) 
-* [Tim Berners-lee](https://en.wikipedia.org/wiki/Tim_Berners-Lee)
 
 
 # Deployment
