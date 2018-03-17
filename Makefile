@@ -4,7 +4,7 @@ help:
 	@echo "   make configure"
 	@echo "   make clean"
 	@echo "   make test"
-	@echo "   make deploy"
+	@echo "   make push"
 
 clean:
 	@rm phpunit-7.phar
@@ -17,8 +17,9 @@ configure:
 test:
 	echo "Test the endpoints"
 
-deploy:
-	echo "deploy the endpoints"
+push:
+	echo "push to master"
+	@git push origin master
 
 
 .PHONY: help

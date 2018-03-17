@@ -11,4 +11,8 @@ function getLastCommit() {
     return $result;
 }
 
+function getCheckSum() {
+    $result = "XXXXXX";
+    return $result;
+}
 

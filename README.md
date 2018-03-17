@@ -106,12 +106,56 @@ Add additional notes about how to deploy this on a live system
 note: this has been preformed successfully from the MacOS command-line 
 
 
-
 ## From GitHUB deployment Hooks
 
 
 
+# Endpoints
 
+## hello
+http://localhost/development/afakes-myob-devops/api/hello.php
+
+**command**
+
+```curl "http://localhost/development/afakes-myob-devops/api/hello.php"```
+
+**result**
+
+```{"statusCode":200,"endpoint":"http:\/\/localhost\/development\/afakes-myob-devops\/api\/hello.php","message":"Hello World"}```
+
+
+## health
+http://localhost/development/afakes-myob-devops/api/health.php
+
+**command**
+
+```curl "http://localhost/development/afakes-myob-devops/api/health.php"```
+
+**result**
+
+```{"statusCode":200,"endpoint":"http:\/\/localhost\/development\/afakes-myob-devops\/api\/hello.php","message":"Hello World"}```
+
+
+
+## metadata
+http://localhost/development/afakes-myob-devops/api/hello.php
+
+**command**
+
+```curl "http://localhost/development/afakes-myob-devops/api/hello.php"```
+
+**result**
+
+```{"statusCode":200,"endpoint":"http:\/\/localhost\/development\/afakes-myob-devops\/api\/hello.php","message":"Hello World"}```
+
+
+
+
+## health
+http://localhost/development/afakes-myob-devops/api/hello.php
+
+## Metadata
+http://localhost/development/afakes-myob-devops/api/hello.php
 
 
 # Appendices  
