@@ -3,8 +3,18 @@ function logDebug($msg = "") {
     file_put_contents("deploy.log", print_r($msg , true) . "\n\n", FILE_APPEND);
 }
 
-$postBody = file_get_contents( 'php://input');
+$postBody = json_decode(file_get_contents( 'php://input'), true);
 // logDebug($postBody);
+
+if (!array_key_exists('repository', $postBody)) {
+    logDebug("Payload does not contain: repository");
+    exit();
+}
+
+if (!array_key_exists('name', $postBody['repository'])) {
+    logDebug("Payload does not conteint: repository.name");
+    exit();
+}
 
 $wwwFolder = "/home3/adamfake/public_html";
 $repoFolder = "{$wwwFolder}/{$postBody['repository']['name']}";
