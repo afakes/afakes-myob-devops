@@ -1,4 +1,7 @@
 <?php
+/**
+ * API to return metadata about this application
+ */
 include_once "app.php";
 
 $result = array();
