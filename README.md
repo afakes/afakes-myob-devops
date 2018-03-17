@@ -66,15 +66,15 @@ Explain what these tests test and why
 Give an example
 ```
 
-## Deployment
 
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Make](https://en.wikipedia.org/wiki/Makefile) - Makefile build system
+* [PHP](http://www.php.net/) - Language
+* [Composer](https://getcomposer.org/) - Dependency Management
+* [Apache](https://httpd.apache.org/) - Apache HTTP Server Project 
+
 
 ## Contributing
 
@@ -88,7 +88,6 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 * **Adam Fakes** - *Initial work* - [adam@datavi.co](mailto:adam@datavi.co), [linkedIn](https://www.linkedin.com/in/adamfakes/).  
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
@@ -96,9 +95,20 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds) 
+* [Tim Berners-lee](https://en.wikipedia.org/wiki/Tim_Berners-Lee)
+
+
+# Deployment
+Add additional notes about how to deploy this on a live system
+
+## From command-line
+note: this has been preformed successfully from the MacOS command-line 
+
+
+
+## From GitHUB deployment Hooks
+
 
 
 
@@ -144,3 +154,13 @@ Once the application has been written, continue with the following additions:
 - create a pipeline that builds your application on each commit; Travis or similar, for example
 - write a clear and understandable `README` which explains your application and its deployment steps
 ```
+
+
+## Appendix 2. how to install 'make'
+
+ * MacOS - Make is part of the XCode development environment, you will need to download and install XCode via the App store 
+ * Linux - make usually comes preconfigured for linux, you may be able to find it via the build-essentials package
+```bash
+ apt-get install build-essentials
+```
+
