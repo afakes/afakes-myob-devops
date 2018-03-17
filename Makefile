@@ -46,7 +46,7 @@ deploy-handler-logs:
 
 deploy-handler-clean:
 	@echo "deploy handler: clean"
-	ssh $(DEPLOY_USER_HOST) "rm $(DEPLOY_HANDLER_FOLDER)/*; touch $(DEPLOY_HANDLER_FOLDER)/deploy.log"
+	ssh $(DEPLOY_USER_HOST) "rm $(DEPLOY_HANDLER_FOLDER)/*; touch $(DEPLOY_HANDLER_FOLDER)/deploy.log; chmod o+w $(DEPLOY_HANDLER_FOLDER)/deploy.log"
 
 deploy-handler-all: deploy-handler-clean deploy-handler-upload-key deploy-handler-upload-code
 

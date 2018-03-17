@@ -7,6 +7,11 @@ function logDebug($msg = "") {
 $postBody = json_decode(file_get_contents( 'php://input'), true);
 // logDebug($postBody);
 
+if ($postBody == null) {
+    logDebug("Payload is null");
+    exit();
+}
+
 if (!array_key_exists('repository', $postBody)) {
     logDebug("Payload does not contain: repository");
     exit();
@@ -31,9 +36,8 @@ if (is_dir($repoFolder)) {
     logDebug("------------------------------------------------------------------");
     $cmd = "cd {$repoFolder}; GIT_SSH_COMMAND='ssh -i deploy.rsa'  git pull origin master > deploy.log";
     logDebug("cmd = {$cmd}");
-    $execResult = [];
-    //exec($cmd, $execResult);
-
+    $execResult = array();
+    exec($cmd, $execResult);
     logDebug("-- PULL RESULT ");
     logDebug(join("\n", $execResult));
 
@@ -49,8 +53,8 @@ if (is_dir($repoFolder)) {
     $cmd = "cd {$wwwFolder}; GIT_SSH_COMMAND='ssh -i deploy.rsa' git clone {$postBody['repository']['ssh_url']} > deploy.log";
     logDebug("cmd = {$cmd}");
 
-    $execResult = [];
-    //exec($cmd, $execResult);
+    $execResult = array();
+    exec($cmd, $execResult);
     logDebug("-- CLONE RESULT ");
     logDebug(join("\n", $execResult));
 
