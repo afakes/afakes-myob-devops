@@ -23,18 +23,36 @@ logDebug("Looking for folder: {$postBody}");
 
 // check to see if the folder exists
 if (is_dir($repoFolder)) {
+
     // YES - already here
     logDebug("Folder DOES exist: {$repoFolder}");
-    $cmd = "cd {$repoFolder}; git pull origin master > deploy.log";  //TODO:  update this to the branch name ?
-    exec($cmd);
+
+    logDebug("-- PULL MASTER ");
+    logDebug("------------------------------------------------------------------");
+    $cmd = "cd {$repoFolder}; GIT_SSH_COMMAND='ssh -i deploy.rsa'  git pull origin master > deploy.log";
     logDebug("cmd = {$cmd}");
+    $execResult = [];
+    //exec($cmd, $execResult);
+
+    logDebug("-- PULL RESULT ");
+    logDebug(join("\n", $execResult));
+
+
 
 } else {
+
     // NO - new install
     logDebug("Folder DOES NOT exist: {$repoFolder}");
-    $cmd = "cd {$wwwFolder}; git clone {$postBody['repository']['ssh_url']}";
-    logDebug("cmd = {$cmd}");
-    exit();
-}
 
+    logDebug("-- CLONE REPO ");
+    logDebug("------------------------------------------------------------------");
+    $cmd = "cd {$wwwFolder}; GIT_SSH_COMMAND='ssh -i deploy.rsa' git clone {$postBody['repository']['ssh_url']} > deploy.log";
+    logDebug("cmd = {$cmd}");
+
+    $execResult = [];
+    //exec($cmd, $execResult);
+    logDebug("-- CLONE RESULT ");
+    logDebug(join("\n", $execResult));
+
+}
 
