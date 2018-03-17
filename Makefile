@@ -1,3 +1,6 @@
+# Adam Fakes
+# Comments
+
 
 DEPLOY_USER_HOST=adamfake@adamfakes.com
 DEPLOY_HANDLER_FOLDER=/home3/adamfake/public_html/deploy
@@ -37,5 +40,5 @@ deploy-handler-logs:
 deploy-handler-clean:
 	ssh $(DEPLOY_USER_HOST) "rm $(DEPLOY_HANDLER_FOLDER)/*; touch $(DEPLOY_HANDLER_FOLDER)/deploy.log"
 
-
 .PHONY: help
+
