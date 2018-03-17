@@ -7,6 +7,8 @@ function getVersionNumber() {
 }
 
 function getLastCommit() {
-    return "abc57858585";
+    $result = exec("git log --pretty=format:'%h' -n 1");
+    return $result;
 }
+
 
