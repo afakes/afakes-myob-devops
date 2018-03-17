@@ -1,4 +1,5 @@
 <?php
+
 function logDebug($msg = "") {
     file_put_contents("deploy.log", print_r($msg , true) . "\n\n", FILE_APPEND);
 }
@@ -24,7 +25,8 @@ logDebug("Looking for folder: {$postBody}");
 if (is_dir($repoFolder)) {
     // YES - already here
     logDebug("Folder DOES exist: {$repoFolder}");
-    $cmd = "cd {$repoFolder}; git pull origin master";  //TODO:  update this to the branch name ?
+    $cmd = "cd {$repoFolder}; git pull origin master > deploy.log";  //TODO:  update this to the branch name ?
+    exec($cmd);
     logDebug("cmd = {$cmd}");
 
 } else {
