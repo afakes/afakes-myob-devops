@@ -34,7 +34,7 @@ if (is_dir($repoFolder)) {
 
     logDebug("-- PULL MASTER ");
     logDebug("------------------------------------------------------------------");
-    $cmd = "cd {$repoFolder}; GIT_SSH_COMMAND='ssh -i deploy.rsa'  git pull origin master > deploy.log";
+    $cmd = "cd {$repoFolder}; GIT_SSH_COMMAND='ssh -i deploy/deploy.rsa'  git pull origin master > deploy.log";
     logDebug("cmd = {$cmd}");
     $execResult = array();
     exec($cmd, $execResult);
@@ -49,8 +49,7 @@ if (is_dir($repoFolder)) {
     logDebug("Folder DOES NOT exist: {$repoFolder}");
 
     logDebug("-- CLONE REPO ");
-    logDebug("------------------------------------------------------------------");
-    $cmd = "cd {$wwwFolder}; GIT_SSH_COMMAND='ssh -i deploy.rsa' git clone {$postBody['repository']['ssh_url']} > deploy.log";
+    $cmd = "cd {$wwwFolder}; GIT_SSH_COMMAND='ssh -i deploy/deploy.rsa' git clone {$postBody['repository']['ssh_url']} > deploy.log";
     logDebug("cmd = {$cmd}");
 
     $execResult = array();
