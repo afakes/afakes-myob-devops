@@ -44,25 +44,45 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 Here we describe how to retrieve the sources code and install any prerequisites
 
 **Quick version**
- - git clone git@github.com:afakes/afakes-myob-devops.git 
- - make clean configure
- - make test
- - validate deployment hook - GitHUB
- - make deploy
+ - ```git clone git@github.com:afakes/afakes-myob-devops.git``` 
+ - ```make clean configure```
+ - ```make test```
+ - ```make clean deploy-handler-all```
+ - validate deployment hook Navigate to: ```https://github.com/afakes/afakes-myob-devops/settings/hooks```  
+ - ```make deploy```
 
 
 ## 2.1 Clone 
 _Clone the GitHUB repository_
+
 ```bash
 git clone git@github.com:afakes/afakes-myob-devops.git
 ```
+
+```text
+Cloning into 'afakes-myob-devops'...
+remote: Counting objects: 116, done.
+remote: Compressing objects: 100% (78/78), done.
+remote: Total 116 (delta 53), reused 90 (delta 29), pack-reused 0
+Receiving objects: 100% (116/116), 574.75 KiB | 469.00 KiB/s, done.
+Resolving deltas: 100% (53/53), done.
+```
+
 
 ## 2.2 Configure 
 validate we have the required prerequisite software to execute from this location
 
 ```bash
-make configure
+make clean configure
 ```
+
+```text
+Download PHPUnit
+Verify PHPUnit
+PHPUnit 7.0.2 by Sebastian Bergmann and contributors.
+```
+
+
 
 ## 2.3 Test 
 execute local tests, and pre-eflight remote tests
@@ -71,39 +91,67 @@ execute local tests, and pre-eflight remote tests
 make test
 ```
 
+
+
 ## 2.4 Github Webhook  
 This code base will make use of the GitHUB webhook system to allow delivery of software to the end host.
 
  * Open browser
  * Navigate to: ```https://github.com/afakes/afakes-myob-devops/settings/hooks```
- * 
+ * Add Webhook
+ * **Payload URL:**  'https://github.com/afakes/afakes-myob-devops/settings/hooks/24110007' 
+ * CLick  () Send me everything.
+ * CLick  "Add Webhook"
 
 
-## 2.5 Deploy 
+## 2.5 Deploy Handler 
+Required, if you would like to have the code update based on commits, to the master branch. I would 
+suggest a future version would accept and check that the code has come from a Pull Request (PR)
 
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
+```bash
+make clean deploy-handler-all
 ```
 
+```text
+deploy handler: clean
+deploy handler: key config
+deploy handler: upload keys
+deploy                                                   100% 1675     7.2KB/s   00:00
+deploy handler: upload ssh config
+deploy-ssh-config.txt                                    100%  125     0.6KB/s   00:00
+deploy handler: configure deploy ssh
+deploy handler: upload code
+deploy.php                                               100% 1650     7.7KB/s   00:00
+```
 
 
-git clone git@github.com:afakes/afakes-myob-devops.git
+## 2.6 Deploy
+We have two deployment methods here, direct via SCP with a packaged tar.gz file, and via GitHUB. There may times 
+when we want to deploy the first time directly on to the host without GitHUB.
+
+## 2.6.1 Deploy directly
+here we will package up the entire project as a .tar.gz and deliver it to the host system, there it will be unpacked
 
 
-End with an example of getting some data out of the system or using it for a little demo
+## 2.6.2 Deploy via Commit
 
-## Running the tests
 
-Explain how to run the automated tests for this system
+### 2.6.2.1 First deploy
+Make a change to the code and commit it, push that change to the repo, this will trigger a deploy, we will see that the code folder does not exist, it will be created on the first GIT CLONE
+
+
+## 2.6.3 Deploy via Commit - subsequent deploy
+Make a change to the code and commit it, push that change to the repo, this will trigger a deploy, 
+
+
+
+
+
+# 5. Integration tests
+how to run the automated tests for this system
+
+
+# 5.1. test - Hello API
 
 ### Break down into end to end tests
 
@@ -112,6 +160,23 @@ Explain what these tests test and why
 ```
 Give an example
 ```
+
+
+# 5.2. test - Health API
+
+
+
+### And coding style tests
+
+Explain what these tests test and why
+
+```
+Give an example
+```
+
+# 5.3. test - Metadata API
+
+
 
 ### And coding style tests
 
@@ -124,69 +189,82 @@ Give an example
 
 
 
-# Deployment
-Add additional notes about how to deploy this on a live system
-
-## From command-line
-note: this has been preformed successfully from the MacOS command-line 
 
 
-## From GitHUB deployment Hooks
+# 6. Endpoints
+here we detail the endpoints, what they are, and what they are used for, and the expected output.
+
+
+## 6.1 hello
+
+ * **Endpoint-url:** ```http://localhost/development/afakes-myob-devops/api/hello.php```
+
+ * **Command line:** ```curl "http://localhost/development/afakes-myob-devops/api/hello.php"```
+
+ * **Result**
+
+```
+{
+  "statusCode": 200,
+  "endpoint": "http://localhost/development/afakes-myob-devops/api/hello.php",
+  "message": "Hello World"
+}
+```
+
+_**note:** the result will be JSON encoded, the above has been decoded for textual clarity_
+
+
+## 6.2 health
+
+* **Endpoint-url:** ```http://localhost/development/afakes-myob-devops/api/health.php```
+
+* **Command line:** ```curl "http://localhost/development/afakes-myob-devops/api/health.php"```
+
+ * **Result**
+
+```
+{
+  "statusCode": 200,
+  "endpoint": "http://localhost/development/afakes-myob-devops/api/health.php",
+  "result": {
+    "status": "OK",
+    "checksum": "258f5135d402cad68b5d518dea4712d9"
+  }
+}
+```
+
+_**note:** the result will be JSON encoded, the above has been decoded for textual clarity_
+
+
+## 6.3 metadata
+
+ * **Endpoint-url:** ```http://localhost/development/afakes-myob-devops/api/metadata.php```
+
+ * **Command line:** ```curl "http://localhost/development/afakes-myob-devops/api/metadata.php"```
+
+ * **result**
+```
+  "statusCode": 200,
+  "endpoint": "http://localhost/development/afakes-myob-devops/api/metadata.php",
+  "myapplication": {
+    "version": "1.5a",
+    "description": "pre-interview technical test",
+    "lastcommitsha": "7e5a25a"
+  }
+}
+```
+
+_**note:** the result will be JSON encoded, the above has been decoded for textual clarity_
 
 
 
-# Endpoints
-
-## hello
-http://localhost/development/afakes-myob-devops/api/hello.php
-
-**command**
-
-```curl "http://localhost/development/afakes-myob-devops/api/hello.php"```
-
-**result**
-
-```{"statusCode":200,"endpoint":"http:\/\/localhost\/development\/afakes-myob-devops\/api\/hello.php","message":"Hello World"}```
-
-
-## health
-http://localhost/development/afakes-myob-devops/api/health.php
-
-**command**
-
-```curl "http://localhost/development/afakes-myob-devops/api/health.php"```
-
-**result**
-
-```{"statusCode":200,"endpoint":"http:\/\/localhost\/development\/afakes-myob-devops\/api\/hello.php","message":"Hello World"}```
-
-
-
-## metadata
-http://localhost/development/afakes-myob-devops/api/hello.php
-
-**command**
-
-```curl "http://localhost/development/afakes-myob-devops/api/hello.php"```
-
-**result**
-
-```{"statusCode":200,"endpoint":"http:\/\/localhost\/development\/afakes-myob-devops\/api\/hello.php","message":"Hello World"}```
-
-
-
-
-## health
-http://localhost/development/afakes-myob-devops/api/hello.php
-
-## Metadata
-http://localhost/development/afakes-myob-devops/api/hello.php
 
 
 # Appendices  
 
 ## Appendix A - Source requirements
- - https://github.com/MYOB-Technology/ops-technical-test/blob/master/README.md
+
+ ref: https://github.com/MYOB-Technology/ops-technical-test/blob/master/README.md
 
 ```
 # Platform Enablement Technical Test
@@ -223,7 +301,6 @@ Once the application has been written, continue with the following additions:
 - create a pipeline that builds your application on each commit; Travis or similar, for example
 - write a clear and understandable `README` which explains your application and its deployment steps
 ```
-
 
 ## Appendix 2. how to install 'make'
 
