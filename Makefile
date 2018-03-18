@@ -24,8 +24,9 @@ get-phpuinit:
 
 configure: get-phpuinit
 
-test:
-	echo "Test the endpoints"
+tests:
+	echo "Test code and endpoints"
+	./phpunit --testdox
 
 push:
 	@echo "push to master"
