@@ -2,14 +2,25 @@
 'MYOB - Platform Enablement Technical Test' by Adam Fakes
 =========================================================
 
+# Summary
+
+ * Written API endpoints, deployable to PHP/Apache HTTPD, to return data in JSON format as per the requirements,  
+ * Built PHPUnit tests, to evaluate the PHP code and the API integrations
+ * Constructed a code deployment mechanisim in PHP, that accepts Webhooks from GitHub and deploys the code base to a 
+Bluehost Shared hosting service. Equally I could have use AWS; cloud-formation, EC2 & Lambda
+ * Registered & connected to Travis CI build evaluation system. Although before this weekend (17th March 2018) I had not used TravisCI. We now 
+have a TravisCI build page along with a build status badge  
+ * Developed a build & deploy system using the Makefile langauge. Added addirional annotations to the Makefile supporting code driven documentation 
+ * Created a simple web interface to discover and execute the API's
+ 
+ 
 # 1. Overview
 
 ## 1.1. Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ## 1.2 Prerequisites
-
-What things you need to install the software and how to install them
+What things you need to install the software, and how to install them
 
 * [git](https://git-scm.com/) - distributed version control system 
 * [Make](https://en.wikipedia.org/wiki/Makefile) - Makefile build system
@@ -51,6 +62,8 @@ Here we describe how to retrieve the sources code and install any prerequisites
  - validate deployment hook at [afakes-myob-devops/settings/hook](https://github.com/afakes/afakes-myob-devops/settings/hook)  
  - ```make deploy```
  - ```make VERSION=x.y.z bump-version```
+
+ * note: ```make help``` returns a formatted list or targets and descriptions
 
 
 ## 2.1 Clone 
@@ -318,6 +331,42 @@ You can view the output of tests at [Travis - afakes-myob-devops](https://travis
   
  ![TravisOutput.png](images/TravisOutput.png "Travis build summary")
 
+
+# 5.0 Help 
+The Makefile has a ``` help ``` target. using the '# @make ' annotations within the file we are able to construct a code driven help page 
+
+ * ```make help```
+
+ * **Result**
+
+```
+usage:
+
+ make help
+ .... what does this Makefile do?
+
+ make readme
+ .... view readme file
+
+ make clean
+ .... remove old build components
+
+ make configure
+ .... setup, download required components
+
+ make tests
+ .... Test code and endpoints
+
+ etc, etc, etc,  
+
+```
+
+
+# 6.0 Known issues
+
+ * [issue-1](https://github.com/afakes/afakes-myob-devops/issues/1) The current system uses GitHub Webhooks to deploy and initiate TravisCI, we would suggest that we only deploy the code to Bluehost if Travis build successfully
+ * [issue-2](https://github.com/afakes/afakes-myob-devops/issues/2) RSA keys; currently storing the RSA in the code base, NOT GOOD (well very bad), production version would deploy the keys separately.  
+ * error checking; the apis could be strenghtend by more error checking on the retrived data. 
 
 
 
