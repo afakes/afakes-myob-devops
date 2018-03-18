@@ -218,8 +218,6 @@ _**note:** the result will be JSON encoded, the above has been decoded for textu
 _**note:** the result will be JSON encoded, the above has been decoded for textual clarity_
 
 
-
-
 # 4. Integration tests
 Test are written with PHPUnit and executed via Travis
  ref: https://travis-ci.org/afakes/afakes-myob-devops
