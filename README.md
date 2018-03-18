@@ -215,10 +215,7 @@ here we detail the endpoints, what they are, and what they are used for, and the
 ## :: hello
 Just to say, [Hello World](https://en.wikipedia.org/wiki/%22Hello,_World!%22_program)
  
- * **Endpoint-url:**
-  
-   * ```http://adamfakes.com/staging/afakes-myob-devops/api```
-   * ```http://adamfakes.com/staging/afakes-myob-devops/api/hello.php```
+ * **Endpoint-url:**: ```http://adamfakes.com/staging/afakes-myob-devops/api/hello.php```  [&#x21AA;](http://adamfakes.com/staging/afakes-myob-devops/api/hello.php)
 
  * **Command line:** ```curl "http://adamfakes.com/staging/afakes-myob-devops/api/hello.php"```
 
@@ -238,7 +235,7 @@ _**note:** the result will be JSON encoded, the above has been decoded for textu
 ## :: health
 To tell us the system is up and running, and return some usful statistics, e.g. Disk Space free, Kernel version - might be usful to know if our system is vulnerable to "Spectre"  
 
- * **Endpoint-url:** ```http://adamfakes.com/staging/afakes-myob-devops/api/health.php```
+ * **Endpoint-url:** ```http://adamfakes.com/staging/afakes-myob-devops/api/health.php``` [&#x21AA;](http://adamfakes.com/staging/afakes-myob-devops/api/health.php)
 
  * **Command line:** ```curl "http://adamfakes.com/staging/afakes-myob-devops/api/health.php"```
 
@@ -261,7 +258,7 @@ _**note:** the result will be JSON encoded, the above has been decoded for textu
 ## :: metadata
 Get some interesting information from the system. e.g. Code Commits, and last commit 
 
- * **Endpoint-url:** ```http://adamfakes.com/staging/afakes-myob-devops/api/metadata.php```
+ * **Endpoint-url:** ```http://adamfakes.com/staging/afakes-myob-devops/api/metadata.php``` [&#x21AA;](http://adamfakes.com/staging/afakes-myob-devops/api/metadata.php)
 
  * **Command line:** ```curl "http://adamfakes.com/staging/afakes-myob-devops/api/metadata.php"```
 
@@ -290,12 +287,7 @@ _**note:** the result will be JSON encoded, the above has been decoded for textu
 ## 3.4 index
 Discover what enpoints are available
 
- * **Endpoint-url:**
-  
- ```
- http://adamfakes.com/staging/afakes-myob-devops/api
- http://adamfakes.com/staging/afakes-myob-devops/api/index.php
- ```
+ * **Endpoint-url:**: ```http://adamfakes.com/staging/afakes-myob-devops/api``` [&#x21AA;](http://adamfakes.com/staging/afakes-myob-devops/api)
 
  * **Command line:** ```curl "http://adamfakes.com/staging/afakes-myob-devops/api"```
 
