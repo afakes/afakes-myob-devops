@@ -1,4 +1,8 @@
 <?php
+/**
+ * @API-DISCOVERY
+ */
+
 include_once "app.php";
 
 $result = array();

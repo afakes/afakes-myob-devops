@@ -12,14 +12,11 @@ class util {
 
                 if ('endpoints' in response) {
 
-                    console.log('response.endpoints = ', response.endpoints, "\n");
-
+                    // todo: in production remove lts - they are slow
                     let headers = util.createTabHeader(response.endpoints);
-                    console.log('headers = ', headers, "\n");
                     domHelper.append(`#${elementID} .tabHeader`, headers);
 
                     let body = util.createTabBody(response.endpoints);
-                    console.log('body = ', body, "\n");
                     domHelper.append(`#${elementID}`, body);
 
                     $( `#${elementID}` ).tabs();
@@ -31,6 +28,11 @@ class util {
 
     }
 
+    /**
+     * create the html for the TAB top buttons
+     * @param endpoints
+     * @returns {string}
+     */
     static createTabHeader(endpoints) {
 
         let result = [];
@@ -44,6 +46,11 @@ class util {
 
     }
 
+    /**
+     * create the html for the TAB bodies
+     * @param endpoints
+     * @returns {string}
+     */
     static createTabBody(endpoints) {
 
         let result = [];
@@ -52,20 +59,44 @@ class util {
             name => {
                 result.push(`
 <div id="tabs-${name}">
-    <h2>${name}<a target="_help_${name}" href="https://github.com/afakes/afakes-myob-devops#-${name}"><i class="material-icons">help_outline</i></a></h2>
-    <li><b>END-POINT:</b>&nbsp;${endpoints[name]}</li>
+    <h2>
+        
+        <a target="_help_${name}" href="https://github.com/afakes/afakes-myob-devops#-${name}" style="text-decoration: none;">
+            <i title="click for help page" class="material-icons">help_outline</i>
+        </a>       
+        <i title="execute API"  class="material-icons" data-dest="content-${name}" data-url="${endpoints[name]}" onclick="util.getApiContent(this)" >flight_takeoff</i>
+        &nbsp;::&nbsp;${name}    
+    </h2>
+    <li>
+        <b>END-POINT:</b>&nbsp;<a target="_api_${name}" href="${endpoints[name]}">${endpoints[name]}</a>
+    </li>
+    <div id="content-${name}"></div>
 </div>
 `);
             }
         );
 
-
         return result.join("\n");
     }
 
+    /**
+     * fetch content from URL and populate dest
+     * @param src
+     */
+    static getApiContent(src) {
+
+        document.getElementById(src.dataset.dest).innerHTML = "...... executing .....";
+        util.fetch(src.dataset.url).then(
+            (content) => {
+                document.getElementById(src.dataset.dest).innerHTML = `<pre>${JSON.stringify(content, null, 2)}</pre>`;
+            }
+        );
+
+    }
 
     /**
      * Use a Proxy system to call the URL and proxy the results
+     * This is my own php script and hosting service, many times I require to access API that are CROS enabled, this allows me to amke AJAX calls and have the script get the content for mer
      * todo: update http://52.33.224.11/jsonProxy/ to an API Gateway and Lambda
      * @param {string} destinationURL
      * @param {string} type [ json | text | xml]
@@ -87,8 +118,6 @@ class util {
         return new Promise(
             (resolve, reject) => {
                 let xhr = new XMLHttpRequest();
-
-                console.log('url = ', url, "\n");
 
                 xhr.open('GET', url);
                 xhr.responseType = type;
