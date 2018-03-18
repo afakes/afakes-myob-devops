@@ -176,7 +176,7 @@ Make a change to the code and commit it, push that change to the repo, this will
 here we detail the endpoints, what they are, and what they are used for, and the expected output.
 
 
-## 3.1 hello
+## :: hello
 
  * **Endpoint-url:**
   
@@ -198,7 +198,7 @@ here we detail the endpoints, what they are, and what they are used for, and the
 _**note:** the result will be JSON encoded, the above has been decoded for textual clarity_
 
 
-## 3.2 health
+## :: health
 
  * **Endpoint-url:** ```http://adamfakes.com/staging/afakes-myob-devops/api/health.php```
 
@@ -220,7 +220,7 @@ _**note:** the result will be JSON encoded, the above has been decoded for textu
 _**note:** the result will be JSON encoded, the above has been decoded for textual clarity_
 
 
-## 3.3 metadata
+## :: metadata
 
  * **Endpoint-url:** ```http://adamfakes.com/staging/afakes-myob-devops/api/metadata.php```
 

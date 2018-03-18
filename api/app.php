@@ -86,8 +86,14 @@ function discoverAPIs(){
     $apiFilenames = array();
     exec("grep -l '@API-DISCOVERY' *.php", $apiFilenames);
 
+    $P = dirname($_SERVER['REQUEST_URI']);
+
     foreach ($apiFilenames as $apiFilename) {
-        $result[] = "http://{$_SERVER['SERVER_NAME']}{$_SERVER['REQUEST_URI']}{$apiFilename}" ;
+        if ($apiFilename == 'app.php') {
+            continue;
+        };
+
+        $result[str_replace('.php','',$apiFilename)] = "http://{$_SERVER['SERVER_NAME']}{$P}/{$apiFilename}" ;
     }
 
     return $result;
