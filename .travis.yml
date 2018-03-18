@@ -2,5 +2,8 @@ language: php
 php:
   - '5.4'
 
+before_script:
+  php -l api/*.php 1>/dev/null && echo "LINT: OK" || echo "LINT: FAILED"
+
 script: phpunit --testdox
 

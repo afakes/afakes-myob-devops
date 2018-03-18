@@ -160,8 +160,6 @@ Make a change to the code and commit it, push that change to the repo, this will
    ``` 
 
 
-
-
 ## 2.6.2.2 Deploy via Commit - subsequent deploy
 Make a change to the code and commit it, push that change to the repo, this will trigger a deploy, 
 

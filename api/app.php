@@ -39,7 +39,6 @@ function getLastCommit() {
  * @return string
  */
 function getCheckSum() {
-
     // the host we have targeted does not have MD5 command line, so we are going to use php internal,  we have local MacOS and remote Shared Hosted Linux wityh limited commands
     // we are going to use PHP version of MD5
 
