@@ -5,6 +5,8 @@ DEPLOY_HANDLER_FOLDER=$(WEB_ROOT)/deploy
 DEST=afakes-myob-devops
 SSH_KEY=-i keys/deploy
 
+VERSION=$(shell cat api/version.txt)
+
 # @make help : what does this Makefile do?
 help:
 	@echo "usage:"
@@ -39,6 +41,16 @@ tests:
 push:
 	@echo "push to master"
 	@git push origin master
+
+# @make get-version : show currewnt version
+get-version:
+	@cat api/version.txt
+
+# @make [VERSION=x.y.z] bump-version : update version and commit it
+bump-version:
+	@echo $VERSION > api/version.txt
+	git commit -am "bump version to $(VERSION)"
+	git push origin master
 
 # @make deploy-handler-upload-key-config : Deploy the RSA keys we need git deploy ment via GIT push
 deploy-handler-upload-key-config:
@@ -91,11 +103,10 @@ deploy:
 	scp $(SSH_KEY) build/package.zip $(DEPLOY_USER_HOST):$(DEPLOY_HANDLER_FOLDER)/package.zip
 	ssh $(SSH_KEY) $(DEPLOY_USER_HOST) "unzip $(DEPLOY_HANDLER_FOLDER)/package.zip -d $(WEB_ROOT)/$(DEST)"
 
-
 # @make [DEST=folder] clean-remote : remove the remote deployed API's
 clean-remote:
 	@echo DEST = $(DEST)
-	@test $(DEST) && ssh $(SSH_KEY) $(DEPLOY_USER_HOST) "rm -r $(WEB_ROOT)/$(DEST)/*; rm -rf $(WEB_ROOT)/$(DEST)/.*; rmdir $(WEB_ROOT)/$(DEST)" || echo " DEST must be set to the folder you wish to remove"
+	@test $(DEST) && ssh $(SSH_KEY) $(DEPLOY_USER_HOST) "rm -r $(WEB_ROOT)/$(DEST)/* 2>/dev/null; rm -rf $(WEB_ROOT)/$(DEST)/.* 2>/dev/null; rmdir $(WEB_ROOT)/$(DEST) 2>/dev/null" || echo " DEST must be set to the folder you wish to remove"
 
 .PHONY: help
 

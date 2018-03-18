@@ -8,7 +8,7 @@ function logDebug($msg = "") {
 }
 
 $postBody = json_decode(file_get_contents( 'php://input'), true);
-logDebug($postBody);
+// logDebug($postBody);
 
 if ($postBody == null) {
     logDebug("Payload is null");
@@ -31,12 +31,12 @@ logDebug("Looking for folder: {$repoFolder}");
 // check to see if the folder exists
 if (is_dir($repoFolder)) {
     // YES - already here
-    logDebug("-- PULL MASTER  ");
+    logDebug("-- PULL MASTER {$postBody['repository']['name']} ---> {$repoFolder}");
     $cmd = "cd {$repoFolder}; git pull origin master";
     exec($cmd);
 } else {
     // NO - new install
-    logDebug("-- CLONE REPO ");
+    logDebug("-- CLONE REPO {$postBody['repository']['full_name']}.git ---> {$repoFolder}");
     $cmd = "cd {$wwwFolder}; git clone 'ext::ssh -i {$pathToDeployKey} git@github.com %S {$postBody['repository']['full_name']}.git'";
     exec($cmd);
 }

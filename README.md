@@ -152,25 +152,25 @@ This relies on the  ```deploy-hanlder```, so must be deployed before pushed comm
 ### 2.6.2.1 First deploy
 Make a change to the code and commit it, push that change to the repo, this will trigger a deploy, we will see that the code folder does not exist, it will be created on the first GIT CLONE
 
- * make change and commit. e.g. update the version number 
- cat api/version.txt
- 1.5a
- 
- echo "2.2a" > api/version.txt
- 2.2a
- 
- git commit -am "bump version"
- 
- [master 41f5608] bump version
-  5 files changed, 80 insertions(+), 67996 deletions(-)
-  delete mode 100755 phpunit
-  
-  make push
+* make change and commit. e.g. update the version number 
+   ```
+   echo "x.y.z" > api/version.txt
+   git commit -am "bump version"
+   make push
+   ``` 
+
+
 
 
 ## 2.6.2.2 Deploy via Commit - subsequent deploy
 Make a change to the code and commit it, push that change to the repo, this will trigger a deploy, 
 
+* make change and commit. e.g. update the version number 
+   ```
+   echo "x.y.z" > api/version.txt
+   git commit -am "bump version"
+   make push
+   ``` 
 
 
 
