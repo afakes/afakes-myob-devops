@@ -2,4 +2,4 @@
 Host github.com
   User git
   Hostname github.com
-  IdentityFile /home3/adamfake/public_html/deploy/deploy.rsa
+  IdentityFile /home3/adamfake/public_html/staging/deploy/deploy.rsa

@@ -1,8 +1,8 @@
 
 DEPLOY_USER_HOST=adamfake@adamfakes.com
-WEB_ROOT=/home3/adamfake/public_html
+WEB_ROOT=/home3/adamfake/public_html/staging
 DEPLOY_HANDLER_FOLDER=$(WEB_ROOT)/deploy
-DEST=afakes-myob-devops-new
+DEST=afakes-myob-devops
 SSH_KEY=-i keys/deploy
 
 # @make help : what does this Makefile do?
@@ -90,6 +90,12 @@ package:
 deploy:
 	scp $(SSH_KEY) build/package.zip $(DEPLOY_USER_HOST):$(DEPLOY_HANDLER_FOLDER)/package.zip
 	ssh $(SSH_KEY) $(DEPLOY_USER_HOST) "unzip $(DEPLOY_HANDLER_FOLDER)/package.zip -d $(WEB_ROOT)/$(DEST)"
+
+
+# @make [DEST=folder] clean-remote : remove the remote deployed API's
+clean-remote:
+	@echo DEST = $(DEST)
+	@test $(DEST) && ssh $(SSH_KEY) $(DEPLOY_USER_HOST) "rm -r $(WEB_ROOT)/$(DEST)/*; rm -rf $(WEB_ROOT)/$(DEST)/.*; rmdir $(WEB_ROOT)/$(DEST)" || echo " DEST must be set to the folder you wish to remove"
 
 .PHONY: help
 
