@@ -18,7 +18,6 @@ class testApp extends \PHPUnit\Framework\TestCase
         $this->assertEquals($testValue, $expectedValue, "Version number does not match");
     }
 
-
     public function testLastCommit()
     {
         $testValue = getLastCommit();
