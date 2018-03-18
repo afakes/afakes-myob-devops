@@ -19,6 +19,14 @@ have a TravisCI build page along with a build status badge
  
 # 1. Overview
 
+ * Getting Started
+ * Prerequisites
+ * Contributing
+ * Versioning 
+ * Authors
+ * Acknowledgments
+ 
+
 ## 1.1. Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
@@ -64,6 +72,13 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 # 2. Installing
 Here we describe how to retrieve the sources code and install any prerequisites
 
+ * Clone 
+ * Configure 
+ * Github Webhook
+ * Deploy Handler 
+ * Deploy
+
+
 **Quick version**
  - ```git clone git@github.com:afakes/afakes-myob-devops.git``` 
  - ```make clean configure```
@@ -71,6 +86,7 @@ Here we describe how to retrieve the sources code and install any prerequisites
  - ```make clean deploy-handler-all```
  - validate deployment hook at [afakes-myob-devops/settings/hook](https://github.com/afakes/afakes-myob-devops/settings/hook)  
  - ```make deploy```
+ - ```make get-version```
  - ```make VERSION=x.y.z bump-version```
 
  * note: ```make help``` returns a formatted list of targets and descriptions
@@ -138,14 +154,12 @@ deploy.php                                               100% 1650     7.7KB/s  
 
 
 ## 2.6 Deploy
-We have two deployment methods here, direct via SCP with a packaged tar.gz file, and via GitHUB. There may times 
-when we want to deploy the first time directly on to the host without GitHUB.
+We have two deployment methods here, direct via SCP with a packaged ZIP file, and via GitHUB. There may be times when we want to deploy directly on to the host without GitHUB.
 
 ## 2.6.1 Deploy directly
-here we will package up the entire project as a .tar.gz and deliver it to the host system, there it will be unpacked
+Here we will package up the entire project as a ZIP file and deliver it to the host system, there it will be unpacked
 
-### Steps to deploy
-_package, upload keys, upload code_ 
+**steps to deploy**: _package, upload keys, upload code_ 
 
  ```
  make package
@@ -153,19 +167,19 @@ _package, upload keys, upload code_
  ```
    * **_folder name_** = the name of the folder inside the webroot directory 
 
- * ```make DEST=FOO deploy```
-   * this will deploy the packaged zip to the folder <webroot>/FOO
+ * ```make DEST=afakes-myob-devops deploy```
+   * this will deploy the packaged zip to the folder <webroot>/afakes-myob-devops
 
  * **example**
  We deploy the codebase to the host, where the API's will be available at  
  ```
  make package
- make DEST=foo deploy
+ make DEST=afakes-myob-devops deploy
  ```
   
-  The API's are now available at ```http://adamfakes.com/staging/foo/api```
+  The API's are now available at ```http://adamfakes.com/staging/afakes-myob-devops/api```
   
-  e.g. ```http://adamfakes.com/staging/foo/api/health.php```
+  e.g. ```http://adamfakes.com/staging/afakes-myob-devops/api/health.php```
  
  
 
@@ -176,29 +190,31 @@ This relies on the  ```deploy-hanlder```, so must be deployed before pushed comm
 ### 2.6.2.1 First deploy
 Make a change to the code and commit it, push that change to the repo, this will trigger a deploy, we will see that the code folder does not exist, it will be created on the first GIT CLONE
 
- * make change and commit. e.g. update the version number 
-   ```bash
-   make VERSION=x.y.z bump-version
-   ``` 
+ * make change and commit. e.g. update the version number ``` make VERSION=x.y.z bump-version ``` 
 
-_**note:** the difference between first & subsequent is seen on the server side._
+_**note:** the difference between first & subsequent is seen on the server side._ On first commit the deploy handler, if the folder does not exist will CLONE the repo
 
 
 ## 2.6.2.2 Deploy via Commit - subsequent deploy
 Make a change to the code and commit it, push that change to the repo, this will trigger a deploy, 
 
- * make change and commit. e.g. update the version number 
-   ```
-   make VERSION=x.y.z bump-version
-   ``` 
+ * make change and commit. e.g. update the version number ``` make VERSION=x.y.z bump-version ```
+  
+_**note:** the difference between first & subsequent is seen on the server side._ On subsequent commit the deploy handler, if the folder does exist will PULL the repo
 
 
 # 3. Endpoints
 here we detail the endpoints, what they are, and what they are used for, and the expected output.
 
+ * hello
+ * health
+ * metadata
+ * index
+
 
 ## :: hello
-
+Just to say, [Hello World](https://en.wikipedia.org/wiki/%22Hello,_World!%22_program)
+ 
  * **Endpoint-url:**
   
    * ```http://adamfakes.com/staging/afakes-myob-devops/api```
@@ -220,6 +236,7 @@ _**note:** the result will be JSON encoded, the above has been decoded for textu
 
 
 ## :: health
+To tell us the system is up and running, and return some usful statistics, e.g. Disk Space free, Kernel version - might be usful to know if our system is vulnerable to "Spectre"  
 
  * **Endpoint-url:** ```http://adamfakes.com/staging/afakes-myob-devops/api/health.php```
 
@@ -242,6 +259,7 @@ _**note:** the result will be JSON encoded, the above has been decoded for textu
 
 
 ## :: metadata
+Get some interesting information from the system. e.g. Code Commits, and last commit 
 
  * **Endpoint-url:** ```http://adamfakes.com/staging/afakes-myob-devops/api/metadata.php```
 
@@ -269,11 +287,15 @@ _**note:** the result will be JSON encoded, the above has been decoded for textu
 
 _**note:** the result will be JSON encoded, the above has been decoded for textual clarity_
 
-## 3.4 Discovery
+## 3.4 index
 Discover what enpoints are available
 
-
- * **Endpoint-url:** ```http://adamfakes.com/staging/afakes-myob-devops/api```
+ * **Endpoint-url:**
+  
+ ```
+ http://adamfakes.com/staging/afakes-myob-devops/api
+ http://adamfakes.com/staging/afakes-myob-devops/api/index.php
+ ```
 
  * **Command line:** ```curl "http://adamfakes.com/staging/afakes-myob-devops/api"```
 
@@ -303,7 +325,11 @@ Discover what enpoints are available
 
 
 # 4. Integration tests
-Test are written with PHPUnit and executed via commandline or [Travis - afakes-myob-devops](https://travis-ci.org/afakes/afakes-myob-devops) 
+Test are written with PHPUnit and executed via commandline or [Travis - afakes-myob-devops](https://travis-ci.org/afakes/afakes-myob-devops). I have made use of the PHPUnit framework to execute tests against the remote endpoints, as this is well supported by Travis CI and other pipeline tools. This approach will hopfully make it easier for developers to contibute to the testing. 
+ 
+
+ * Local 
+ * Travis CI
 
 # 4.1. Local test
 
@@ -330,7 +356,12 @@ testEndpointMetadata
  ✔ Endpoint metadata content
  ✔ Endpoint metadata data
 
+testLINT
+ ✔ Code syntax
+
 Time: 2.93 seconds, Memory: 8.00MB
+OK (9 tests, 18 assertions)
+
 ```
 
 
@@ -343,7 +374,7 @@ You can view the output of tests at [Travis - afakes-myob-devops](https://travis
 
 
 # 5.0 Help 
-The Makefile has a ``` help ``` target. using the '# @make ' annotations within the file we are able to construct a code driven help page 
+The Makefile has a ```help``` target. using the '# @make ' annotations within the file we are able to construct a code driven help 
 
  * ```make help```
 
@@ -376,8 +407,7 @@ usage:
 
  * [issue-1](https://github.com/afakes/afakes-myob-devops/issues/1) The current system uses GitHub Webhooks to deploy and initiate TravisCI, we would suggest that we only deploy the code to Bluehost if Travis build successfully
  * [issue-2](https://github.com/afakes/afakes-myob-devops/issues/2) RSA keys; currently storing the RSA in the code base, NOT GOOD (well very bad), production version would deploy the keys separately.  
- * error checking; the apis could be strenghtend by more error checking on the retrived data. 
-
+ * error checking; the apis could be strengthened by additional error checking on the retrived data. 
 
 
 # Appendices  
