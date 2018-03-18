@@ -60,3 +60,17 @@ function getCommitLog() {
 }
 
 
+function getTargetHostStats() {
+
+    $result = array();
+
+    $result['disk'] = array();
+    exec('df -h', $result['disk']);
+
+    $result['memory'] = array();
+    exec('free -h | head -n2 | tail -n1', $result['memory']);
+
+    return $result;
+}
+
+
