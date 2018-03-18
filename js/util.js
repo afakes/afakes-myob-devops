@@ -1,6 +1,11 @@
 class util {
 
-    static getEndpoints() {
+    /**
+     *
+     * @param {HTMLElement} element
+     * @returns {Promise<any>}
+     */
+    static getEndpoints(elementID) {
 
         return util.fetch("api/index.php").then(
             (response) => {
@@ -10,13 +15,14 @@ class util {
                     console.log('response.endpoints = ', response.endpoints, "\n");
 
                     let headers = util.createTabHeader(response.endpoints);
-
                     console.log('headers = ', headers, "\n");
+                    domHelper.append(`#${elementID} .tabHeader`, headers);
 
                     let body = util.createTabBody(response.endpoints);
-
                     console.log('body = ', body, "\n");
+                    domHelper.append(`#${elementID}`, body);
 
+                    $( `#${elementID}` ).tabs();
                 }
 
 
@@ -46,7 +52,7 @@ class util {
             name => {
                 result.push(`
 <div id="tabs-${name}">
-    <h2>${name}</h2>
+    <h2>${name}<a target="_help_${name}" href="https://github.com/afakes/afakes-myob-devops#-${name}"><i class="material-icons">help_outline</i></a></h2>
     <li><b>END-POINT:</b>&nbsp;${endpoints[name]}</li>
 </div>
 `);
