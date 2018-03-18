@@ -169,9 +169,9 @@ _**note:** the result will be JSON encoded, the above has been decoded for textu
 
 ## 3.2 health
 
-* **Endpoint-url:** ```http://adamfakes.com/afakes-myob-devops/api/health.php```
+ * **Endpoint-url:** ```http://adamfakes.com/afakes-myob-devops/api/health.php```
 
-* **Command line:** ```curl "http://adamfakes.com/afakes-myob-devops/api/health.php"```
+ * **Command line:** ```curl "http://adamfakes.com/afakes-myob-devops/api/health.php"```
 
  * **Result**
 
@@ -219,31 +219,43 @@ _**note:** the result will be JSON encoded, the above has been decoded for textu
 
 
 # 4. Integration tests
-Test are written with PHPUnit and executed via Travis
- ref: https://travis-ci.org/afakes/afakes-myob-devops
+Test are written with PHPUnit and executed via commandline or [Travis - afakes-myob-devops](https://travis-ci.org/afakes/afakes-myob-devops) 
 
-## 4.1 hello
-Explain what these tests test and why
+# 4.1. Local test
 
- * **Endpoint-url:** ```http://localhost/development/afakes-myob-devops/api/hello.php```
+ * ```make tests```
 
- * **test:** 
+ * **Result**
 
+```text
+PHPUnit 7.0.2 by Sebastian Bergmann and contributors.
 
+testApp
+ ✔ Version
+ ✔ Last commit
+
+testEndpointHello
+ ✔ Endpoint hello content
+ ✔ Endpoint hello message
+
+testEndpointHealth
+ ✔ Endpoint health content
+ ✔ Endpoint health data
+
+testEndpointMetadata
+ ✔ Endpoint metadata content
+ ✔ Endpoint metadata data
+
+Time: 2.93 seconds, Memory: 8.00MB
 ```
-Give an example
-```
 
 
+# 4.2. Via Travis
+You can view the output of tests at [Travis - afakes-myob-devops](https://travis-ci.org/afakes/afakes-myob-devops)
 
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
+ * **Result**
+  
+ ![TravisOutput.png](images/TravisOutput.png "Travis build summary")
 
 
 

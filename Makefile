@@ -1,6 +1,3 @@
-# Adam Fakes - 1
-# Comments
-
 
 DEPLOY_USER_HOST=adamfake@adamfakes.com
 DEPLOY_HANDLER_FOLDER=/home3/adamfake/public_html/deploy
@@ -25,7 +22,7 @@ get-phpuinit:
 configure: get-phpuinit
 
 tests:
-	echo "Test code and endpoints"
+	@echo "Test code and endpoints"
 	./phpunit --testdox
 
 push:
