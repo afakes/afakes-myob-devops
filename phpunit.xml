@@ -5,6 +5,7 @@
             <file>test/test-endpoint-hello.php</file>
             <file>test/test-endpoint-health.php</file>
             <file>test/test-endpoint-metadata.php</file>
+            <file>test/test-lint.php</file>
         </testsuite>
     </testsuites>
 </phpunit>

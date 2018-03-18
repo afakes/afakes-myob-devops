@@ -4,6 +4,7 @@
  * The name of the APP
  */
 $appName = "afakes-myob-devops";
+$user = "afakes";
 
 /**
  * get the current Software Version number as defined by the developers / code base
@@ -41,7 +42,6 @@ function getLastCommit() {
 function getCheckSum() {
     // the host we have targeted does not have MD5 command line, so we are going to use php internal,  we have local MacOS and remote Shared Hosted Linux wityh limited commands
     // we are going to use PHP version of MD5
-
     $result = array();
     exec("ls -lsR ..", $result);
     return md5(join("", $result));
@@ -58,10 +58,5 @@ function getCommitLog() {
 
     return array_reverse($result);
 }
-
-
-
-
-
 
 

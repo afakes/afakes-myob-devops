@@ -27,11 +27,11 @@ class testEndpointMetadata extends \PHPUnit\Framework\TestCase
         $testValue = json_decode($this->endpointData, true);
         $this->assertNotFalse($testValue, "Endpoint data is not JSON");
 
-        $this->assertArrayHasKey('myapplication', $testValue, "key missing [myapplication]");
-        $this->assertArrayHasKey('commitLog', $testValue['myapplication'], "key missing [result][commitLog]");
-        $this->assertArrayHasKey(0, $testValue['myapplication']['commitLog'], "key missing [result][commitLog][0]");
+        $this->assertArrayHasKey('metadata', $testValue, "key missing [metadata]");
+        $this->assertArrayHasKey('commitLog', $testValue['metadata'], "key missing [metadata][commitLog]");
+        $this->assertArrayHasKey(0, $testValue['metadata']['commitLog'], "key missing [metadata][commitLog][0]");
 
-        $firstCommit = $testValue['myapplication']['commitLog'][0];
+        $firstCommit = $testValue['metadata']['commitLog'][0];
 
         $this->assertContains('Initial commit', $firstCommit, "could not find initial commit message");
 
