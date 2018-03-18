@@ -8,7 +8,7 @@
 
 include_once "api/app.php";
 
-class app extends \PHPUnit\Framework\TestCase
+class testApp extends \PHPUnit\Framework\TestCase
 {
 
     public function testVersion()

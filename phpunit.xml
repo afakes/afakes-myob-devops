@@ -2,6 +2,7 @@
     <testsuites>
         <testsuite name="api">
             <file>test/test-app.php</file>
+            <file>test/test-endpoint-hello.php</file>
         </testsuite>
     </testsuites>
 </phpunit>
