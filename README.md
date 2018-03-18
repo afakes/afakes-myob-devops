@@ -46,7 +46,7 @@ Here we describe how to retrieve the sources code and install any prerequisites
 **Quick version**
  - ```git clone git@github.com:afakes/afakes-myob-devops.git``` 
  - ```make clean configure```
- - ```make test```
+ - ```make tests```
  - ```make clean deploy-handler-all```
  - validate deployment hook Navigate to: ```https://github.com/afakes/afakes-myob-devops/settings/hooks```  
  - ```make deploy```
@@ -87,7 +87,7 @@ PHPUnit 7.0.2 by Sebastian Bergmann and contributors.
 execute local tests, and pre-flight remote tests
 
 ```bash
-make test
+make tests
 ```
 
 
