@@ -160,7 +160,7 @@ here we detail the endpoints, what they are, and what they are used for, and the
 ```
 {
   "statusCode": 200,
-  "endpoint": "http://localhost/development/afakes-myob-devops/api/hello.php",
+  "endpoint": "http://adamfakes.com/afakes-myob-devops/api/hello.php",
   "message": "Hello World"
 }
 ```

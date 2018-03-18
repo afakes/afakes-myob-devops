@@ -37,7 +37,8 @@ function getLastCommit() {
  */
 function getCheckSum() {
 
-    $result = exec("ls -lsR .. | md5");
+    // the host we have targeted does not have MD5 command line, so we are going to use sha1sum
+    $result = exec("ls -lsR .. | sha1sum");
     return $result;
 }
 
