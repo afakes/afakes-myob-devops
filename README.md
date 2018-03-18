@@ -153,7 +153,7 @@ This relies on the  ```deploy-hanlder```, so must be deployed before pushed comm
 Make a change to the code and commit it, push that change to the repo, this will trigger a deploy, we will see that the code folder does not exist, it will be created on the first GIT CLONE
 
 * make change and commit. e.g. update the version number 
-   ```
+   ```bash
    echo "x.y.z" > api/version.txt
    git commit -am "bump version"
    make push
@@ -164,7 +164,7 @@ Make a change to the code and commit it, push that change to the repo, this will
 Make a change to the code and commit it, push that change to the repo, this will trigger a deploy, 
 
 * make change and commit. e.g. update the version number 
-   ```
+   ```bash
    echo "x.y.z" > api/version.txt
    git commit -am "bump version"
    make push
@@ -187,7 +187,7 @@ here we detail the endpoints, what they are, and what they are used for, and the
 
  * **Result**
 
-```
+```json
 {
   "statusCode": 200,
   "endpoint": "http://adamfakes.com/staging/afakes-myob-devops/api/hello.php",
@@ -206,7 +206,7 @@ _**note:** the result will be JSON encoded, the above has been decoded for textu
 
  * **Result**
 
-```
+```json
 {
   "statusCode": 200,
   "endpoint": "http://adamfakes.com/staging/afakes-myob-devops/api/health.php",
@@ -227,7 +227,7 @@ _**note:** the result will be JSON encoded, the above has been decoded for textu
  * **Command line:** ```curl "http://adamfakes.com/staging/afakes-myob-devops/api/metadata.php"```
 
  * **result**
-```
+```json
 {
   "statusCode": 200,
   "endpoint": "http://adamfakes.com/staging/afakes-myob-devops/api/metadata.php",
@@ -247,6 +247,38 @@ _**note:** the result will be JSON encoded, the above has been decoded for textu
 ```
 
 _**note:** the result will be JSON encoded, the above has been decoded for textual clarity_
+
+## 3.4 Discovery
+Discover what enpoints are available
+
+
+ * **Endpoint-url:** ```http://adamfakes.com/staging/afakes-myob-devops/api```
+
+ * **Command line:** ```curl "http://adamfakes.com/staging/afakes-myob-devops/api"```
+
+```json
+{
+  "statusCode": 200,
+  "endpoint": "http://localhost/development/afakes-myob-devops/api/index.php",
+  "authors": {
+    "afakes": {
+      "linkedin": "https://www.linkedin.com/in/adamfakes",
+      "github": "https://github.com/afakes"
+    }
+  },
+  "code-inspection": {
+    "travis": "https://travis-ci.org/afakes/afakes-myob-devops",
+    "github": "https://github.com/afakes/afakes-myob-devops"
+  },
+  "endpoints": [
+    "http://localhost/development/afakes-myob-devops/api/app.php",
+    "http://localhost/development/afakes-myob-devops/api/health.php",
+    "http://localhost/development/afakes-myob-devops/api/hello.php",
+    "http://localhost/development/afakes-myob-devops/api/metadata.php"
+  ]
+}
+```
+
 
 
 # 4. Integration tests

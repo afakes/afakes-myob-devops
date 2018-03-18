@@ -1,6 +1,7 @@
 <?php
 /**
  * API to return metadata about this application
+ * @API-DISCOVERY
  */
 include_once "app.php";
 

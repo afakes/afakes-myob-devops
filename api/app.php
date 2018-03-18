@@ -24,7 +24,6 @@ function getVersionNumber() {
  * @return string
  */
 function getLastCommit() {
-
     $result = exec("git log --pretty=format:'%h' -n 1");
     return $result;
 }
@@ -64,13 +63,44 @@ function getTargetHostStats() {
 
     $result = array();
 
+    $result['kernel'] = kernelVersion();
+    $result['user'] = executionUser();
+
     $result['disk'] = array();
-    exec('df -h', $result['disk']);
+    exec('df -Ph', $result['disk']);
 
     $result['memory'] = array();
     exec('free -h | head -n2 | tail -n1', $result['memory']);
 
+
     return $result;
 }
+
+/**
+ * Files in this folder are possibly API's those that contain @API-DISCOVERY, are API's
+ */
+function discoverAPIs(){
+
+    $result = array();
+
+    $apiFilenames = array();
+    exec("grep -l '@API-DISCOVERY' *.php", $apiFilenames);
+
+    foreach ($apiFilenames as $apiFilename) {
+        $result[] = "http://{$_SERVER['SERVER_NAME']}{$_SERVER['REQUEST_URI']}{$apiFilename}" ;
+    }
+
+    return $result;
+}
+
+
+function kernelVersion() {
+    return exec("uname -a");
+}
+
+function executionUser() {
+    return exec("whoami");
+}
+
 
 
