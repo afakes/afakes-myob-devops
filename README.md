@@ -91,7 +91,6 @@ make test
 ```
 
 
-
 ## 2.4 Github Webhook  
 This code base will make use of the GitHUB webhook system to allow delivery of software to the end host.
 
@@ -151,9 +150,9 @@ here we detail the endpoints, what they are, and what they are used for, and the
 
 ## 3.1 hello
 
- * **Endpoint-url:** ```http://localhost/development/afakes-myob-devops/api/hello.php```
+ * **Endpoint-url:** ```http://adamfakes.com/afakes-myob-devops/api/hello.php```
 
- * **Command line:** ```curl "http://localhost/development/afakes-myob-devops/api/hello.php"```
+ * **Command line:** ```curl "http://adamfakes.com/afakes-myob-devops/api/hello.php"```
 
  * **Result**
 
@@ -170,19 +169,19 @@ _**note:** the result will be JSON encoded, the above has been decoded for textu
 
 ## 3.2 health
 
-* **Endpoint-url:** ```http://localhost/development/afakes-myob-devops/api/health.php```
+* **Endpoint-url:** ```http://adamfakes.com/afakes-myob-devops/api/health.php```
 
-* **Command line:** ```curl "http://localhost/development/afakes-myob-devops/api/health.php"```
+* **Command line:** ```curl "http://adamfakes.com/afakes-myob-devops/api/health.php"```
 
  * **Result**
 
 ```
 {
   "statusCode": 200,
-  "endpoint": "http://localhost/development/afakes-myob-devops/api/health.php",
+  "endpoint": "http://adamfakes.com/afakes-myob-devops/api/health.php",
   "result": {
     "status": "OK",
-    "checksum": "258f5135d402cad68b5d518dea4712d9"
+    "checksum": "3e539dda4ae1aa09313e3ebd285efc12"
   }
 }
 ```
@@ -192,20 +191,21 @@ _**note:** the result will be JSON encoded, the above has been decoded for textu
 
 ## 3.3 metadata
 
- * **Endpoint-url:** ```http://localhost/development/afakes-myob-devops/api/metadata.php```
+ * **Endpoint-url:** ```http://adamfakes.com/afakes-myob-devops/api/metadata.php```
 
- * **Command line:** ```curl "http://localhost/development/afakes-myob-devops/api/metadata.php"```
+ * **Command line:** ```curl "http://adamfakes.com/afakes-myob-devops/api/metadata.php"```
 
  * **result**
 ```
-  "statusCode": 200,
-  "endpoint": "http://localhost/development/afakes-myob-devops/api/metadata.php",
-  "myapplication": {
-    "version": "1.5a",
-    "description": "pre-interview technical test",
-    "lastcommitsha": "7e5a25a"
-  }
-}
+   {
+     "statusCode": 200,
+     "endpoint": "http://adamfakes.com/afakes-myob-devops/api/metadata.php",
+     "myapplication": {
+       "version": "1.5a",
+       "description": "pre-interview technical test",
+       "lastcommitsha": "3ff86b4"
+     }
+   }
 ```
 
 _**note:** the result will be JSON encoded, the above has been decoded for textual clarity_

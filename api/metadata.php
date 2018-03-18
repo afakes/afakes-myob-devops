@@ -10,7 +10,8 @@ $result['endpoint'] = "http://{$_SERVER['SERVER_NAME']}{$_SERVER['SCRIPT_NAME']}
 $result["myapplication"] = array(
     "version" => getVersionNumber(),
     "description" => "pre-interview technical test",
-    "lastcommitsha" => getLastCommit()
+    "lastcommitsha" => getLastCommit(),
+    "commitLog" => getCommitLog()
 );
 
 echo json_encode($result);

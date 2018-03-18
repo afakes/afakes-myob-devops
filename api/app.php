@@ -49,6 +49,17 @@ function getCheckSum() {
 }
 
 
+/**
+ * get the Git commit log so we can see what has been updated via the API
+ * @return array
+ */
+function getCommitLog() {
+    $result = array();
+    exec('git log --pretty=format:\"%h%x09%an%x09%ad%x09%s\" | tr "\t" "~" | sed "s/\"/ /g" ', $result);
+    return $result;
+}
+
+
 
 
 
