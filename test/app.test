@@ -1,0 +1,14 @@
+<?php
+class HelloUnitTestCase extends UnitTestCase {
+
+    public static function getInfo() {
+        return array(
+            'name' => 'Example Unit Test Case',
+            'group' => 'Travis-CI Module Example',
+        );
+    }
+
+    public function testAssertTrue() {
+        $this->assert(true);
+    }
+}
