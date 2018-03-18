@@ -6,7 +6,7 @@
  * Time: 12:36
  */
 
-class testEndpoint extends \PHPUnit\Framework\TestCase
+class testEndpointHealth extends \PHPUnit\Framework\TestCase
 {
 
     private $endpointData = null;

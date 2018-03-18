@@ -1,9 +1,9 @@
 <phpunit >
     <testsuites>
         <testsuite name="api">
-            <!--<file>test/test-app.php</file>-->
-            <!--<file>test/test-endpoint-hello.php</file>-->
-            <!--<file>test/test-endpoint-health.php</file>-->
+            <file>test/test-app.php</file>
+            <file>test/test-endpoint-hello.php</file>
+            <file>test/test-endpoint-health.php</file>
             <file>test/test-endpoint-metadata.php</file>
         </testsuite>
     </testsuites>

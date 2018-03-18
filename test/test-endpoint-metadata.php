@@ -6,7 +6,7 @@
  * Time: 12:36
  */
 
-class testEndpoint extends \PHPUnit\Framework\TestCase
+class testEndpointMetadata extends \PHPUnit\Framework\TestCase
 {
 
     private $endpointData = null;
@@ -15,13 +15,13 @@ class testEndpoint extends \PHPUnit\Framework\TestCase
         $this->endpointData = file_get_contents("http://adamfakes.com/afakes-myob-devops/api/metadata.php");
     }
 
-    public function testEndpointHealthContent()
+    public function testEndpointMetadataContent()
     {
         $testValue = $this->endpointData;
         $this->assertNotNull($testValue, "Cannot get endpoint [metadata]");
     }
 
-    public function testEndpointHealthData()
+    public function testEndpointMetadataData()
     {
         $testValue = json_decode($this->endpointData, true);
         $this->assertNotFalse($testValue, "Endpoint data is not JSON");
@@ -32,8 +32,7 @@ class testEndpoint extends \PHPUnit\Framework\TestCase
 
         $firstCommit = $testValue['myapplication']['commitLog'][0];
 
-        print_r($firstCommit);
-
+        $this->assertContains('Initial commit', $firstCommit, "could not find initial commit message");
 
     }
 
