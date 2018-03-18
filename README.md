@@ -197,15 +197,22 @@ _**note:** the result will be JSON encoded, the above has been decoded for textu
 
  * **result**
 ```
-   {
-     "statusCode": 200,
-     "endpoint": "http://adamfakes.com/afakes-myob-devops/api/metadata.php",
-     "myapplication": {
-       "version": "1.5a",
-       "description": "pre-interview technical test",
-       "lastcommitsha": "3ff86b4"
-     }
-   }
+{
+  "statusCode": 200,
+  "endpoint": "http://adamfakes.com/afakes-myob-devops/api/metadata.php",
+  "myapplication": {
+    "version": "1.5a",
+    "description": "pre-interview technical test",
+    "lastcommitsha": "81a52fd",
+    "commitLog": [
+      " 81a52fd|Adam Fakes|Sun Mar 18 12:09:53 2018 +1100|added commit log to metadata",
+      ....
+      " 7e5a25a|Adam Fakes|Sat Mar 17 17:49:35 2018 +1100|version updated",
+      " a2375fb|Adam Fakes|Sat Mar 17 14:01:17 2018 +1100|setup api endpoints",
+      " 7e16e65|Adam Fakes|Sat Mar 17 13:06:19 2018 +1100|Initial commit"
+    ]
+  }
+}
 ```
 
 _**note:** the result will be JSON encoded, the above has been decoded for textual clarity_
