@@ -12,11 +12,8 @@ class testEndpoint extends \PHPUnit\Framework\TestCase
     private $endpointData = null;
 
     public function setUp() {
-
         $this->endpointData = file_get_contents("http://adamfakes.com/afakes-myob-devops/api/hello.php");
-
     }
-
 
     public function testEndpointHelloContent()
     {
@@ -30,6 +27,7 @@ class testEndpoint extends \PHPUnit\Framework\TestCase
         $this->assertNotFalse($testValue, "Endpoint data is not JSON");
         $this->assertArrayHasKey('message', $testValue, "key missing [message]");
         $this->assertEquals("Hello World", $testValue['message'], "Messages are not the same");
+
     }
 
 
