@@ -80,6 +80,11 @@ deploy-handler-logs:
 	@echo "deploy handler: view log"
 	@ssh $(SSH_KEY) $(DEPLOY_USER_HOST) "cat $(DEPLOY_HANDLER_FOLDER)/deploy.log"
 
+# @make deploy-handler-log-clean : clear the deployment handler logs
+deploy-handler-log-clean:
+	@echo "deploy handler: log clean"
+	@ssh $(SSH_KEY) $(DEPLOY_USER_HOST) "rm $(DEPLOY_HANDLER_FOLDER)/deploy.log; touch $(DEPLOY_HANDLER_FOLDER)/deploy.log; chmod o+w $(DEPLOY_HANDLER_FOLDER)/deploy.log"
+
 # @make deploy-handler-clean : clear the deployment handler logs
 deploy-handler-clean:
 	@echo "deploy handler: clean"

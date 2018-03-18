@@ -50,6 +50,7 @@ Here we describe how to retrieve the sources code and install any prerequisites
  - ```make clean deploy-handler-all```
  - validate deployment hook at [afakes-myob-devops/settings/hook](https://github.com/afakes/afakes-myob-devops/settings/hook)  
  - ```make deploy```
+ - ```make VERSION=x.y.z bump-version```
 
 
 ## 2.1 Clone 
@@ -152,24 +153,21 @@ This relies on the  ```deploy-hanlder```, so must be deployed before pushed comm
 ### 2.6.2.1 First deploy
 Make a change to the code and commit it, push that change to the repo, this will trigger a deploy, we will see that the code folder does not exist, it will be created on the first GIT CLONE
 
-* make change and commit. e.g. update the version number 
+ * make change and commit. e.g. update the version number 
    ```bash
-   echo "x.y.z" > api/version.txt
-   git commit -am "bump version"
-   make push
+   make VERSION=x.y.z bump-version
    ``` 
+
+_**note:** the difference between first & subsequent is seen on the server side._
 
 
 ## 2.6.2.2 Deploy via Commit - subsequent deploy
 Make a change to the code and commit it, push that change to the repo, this will trigger a deploy, 
 
-* make change and commit. e.g. update the version number 
-   ```bash
-   echo "x.y.z" > api/version.txt
-   git commit -am "bump version"
-   make push
+ * make change and commit. e.g. update the version number 
+   ```
+   make VERSION=x.y.z bump-version
    ``` 
-
 
 
 # 3. Endpoints
