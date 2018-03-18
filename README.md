@@ -48,7 +48,7 @@ Here we describe how to retrieve the sources code and install any prerequisites
  - ```make clean configure```
  - ```make tests```
  - ```make clean deploy-handler-all```
- - validate deployment hook Navigate to: ```https://github.com/afakes/afakes-myob-devops/settings/hooks```  
+ - validate deployment hook at [afakes-myob-devops/settings/hook](https://github.com/afakes/afakes-myob-devops/settings/hook)  
  - ```make deploy```
 
 
@@ -72,22 +72,12 @@ Resolving deltas: 100% (53/53), done.
 ## 2.2 Configure 
 validate we have the required prerequisite software to execute from this location
 
-```bash
-make clean configure
-```
+ * ```make clean configure```
 
 ```text
 Download PHPUnit
 Verify PHPUnit
 PHPUnit 7.0.2 by Sebastian Bergmann and contributors.
-```
-
-
-## 2.3 Test 
-execute local tests, and pre-flight remote tests
-
-```bash
-make tests
 ```
 
 
@@ -130,15 +120,42 @@ when we want to deploy the first time directly on to the host without GitHUB.
 ## 2.6.1 Deploy directly
 here we will package up the entire project as a .tar.gz and deliver it to the host system, there it will be unpacked
 
+### Steps to deploy
+_package, upload keys, upload code_ 
+
+ ```
+ make package
+ make DEST=<folder name> deploy
+ ```
+   * **_folder name_** = the name of the folder inside the webroot directory 
+
+ * ```make DEST=FOO deploy```
+   * this will deploy the packaged zip to the folder <webroot>/FOO
+
+ * **example**
+ We deploy the codebase to the host, where the API's will be available at  
+ ```
+ make package
+ make DEST=foo deploy
+ ```
+  
+  The API's are now available at ```http://adamfakes.com/foo/api```
+  
+  e.g. ```http://adamfakes.com/foo/api/health.php```
+ 
+ 
 
 ## 2.6.2 Deploy via Commit
-
+This relies on the  ```deploy-hanlder```, so must be deployed before pushed commits will have an affect.
 
 ### 2.6.2.1 First deploy
 Make a change to the code and commit it, push that change to the repo, this will trigger a deploy, we will see that the code folder does not exist, it will be created on the first GIT CLONE
 
+ * make change and commit. e.g. update the version number 
+ 
 
-## 2.6.3 Deploy via Commit - subsequent deploy
+
+## 2.6.2.2 Deploy via Commit - subsequent deploy
 Make a change to the code and commit it, push that change to the repo, this will trigger a deploy, 
 
 
@@ -150,7 +167,10 @@ here we detail the endpoints, what they are, and what they are used for, and the
 
 ## 3.1 hello
 
- * **Endpoint-url:** ```http://adamfakes.com/afakes-myob-devops/api/hello.php```
+ * **Endpoint-url:**
+  
+   * ```http://adamfakes.com/afakes-myob-devops/api```
+   * ```http://adamfakes.com/afakes-myob-devops/api/hello.php```
 
  * **Command line:** ```curl "http://adamfakes.com/afakes-myob-devops/api/hello.php"```
 

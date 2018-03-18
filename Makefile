@@ -1,16 +1,24 @@
 
 DEPLOY_USER_HOST=adamfake@adamfakes.com
-DEPLOY_HANDLER_FOLDER=/home3/adamfake/public_html/deploy
+WEB_ROOT=/home3/adamfake/public_html
+DEPLOY_HANDLER_FOLDER=$(WEB_ROOT)/deploy
+DEST=afakes-myob-devops-new
+SSH_KEY=-i keys/deploy
 
+# @make help : what does this Makefile do?
 help:
 	@echo "usage:"
-	@echo "   make configure"
-	@echo "   make clean"
-	@echo "   make test"
-	@echo "   make push"
+	@grep "^# @make " Makefile | tr "#" "\n" | sed 's/ @/ /g' | sed 's/:/~ ..../g' | tr "~" "\n" | sed
+	@echo ""
 
+# @make readme : view readme file
+readme:
+	cat README.md
+
+# @make clean : remove old build components
 clean:
 	@rm -f phpunit 2>/dev/null
+	@rm -f build/* 2>/dev/null
 
 get-phpuinit:
 	@echo "Download PHPUnit"
@@ -19,16 +27,20 @@ get-phpuinit:
 	@echo "Verify PHPUnit"
 	@./phpunit --version
 
+# @make configure : setup, download required components
 configure: get-phpuinit
 
+# @make tests : Test code and endpoints
 tests:
 	@echo "Test code and endpoints"
 	./phpunit --testdox
 
+# @make push : push lastest commits to master
 push:
 	@echo "push to master"
 	@git push origin master
 
+# @make deploy-handler-upload-key-config : Deploy the RSA keys we need git deploy ment via GIT push
 deploy-handler-upload-key-config:
 	@echo "deploy handler: key config"
 	@echo "#GITHUB-DEPLOY" > deploy-ssh-config.txt
@@ -37,28 +49,47 @@ deploy-handler-upload-key-config:
 	@echo "  Hostname github.com" >> deploy-ssh-config.txt
 	@echo "  IdentityFile $(DEPLOY_HANDLER_FOLDER)/deploy.rsa" >>deploy-ssh-config.txt
 
-# we should NEVER load the keys inside the WWW folder, but just for ease at the moment
+# @make @deploy-handler-upload-key : we should NEVER load the keys inside the WWW folder, but just for ease at the moment
 deploy-handler-upload-key: deploy-handler-upload-key-config
 	@echo "deploy handler: upload keys"
 	@scp keys/deploy $(DEPLOY_USER_HOST):$(DEPLOY_HANDLER_FOLDER)/deploy.rsa
 	@echo "deploy handler: upload ssh config"
-	@scp deploy-ssh-config.txt $(DEPLOY_USER_HOST):$(DEPLOY_HANDLER_FOLDER)/deploy-ssh-config.txt
+	@scp $(SSH_KEY) deploy-ssh-config.txt $(DEPLOY_USER_HOST):$(DEPLOY_HANDLER_FOLDER)/deploy-ssh-config.txt
 	@echo "deploy handler: configure deploy ssh"
-	@ssh $(DEPLOY_USER_HOST) "cat $(DEPLOY_HANDLER_FOLDER)/deploy-ssh-config.txt >> ~/.ssh/config "
+	@ssh $(SSH_KEY) $(DEPLOY_USER_HOST) "cat $(DEPLOY_HANDLER_FOLDER)/deploy-ssh-config.txt >> ~/.ssh/config "
 
+# @make deploy-handler-upload-code : Upload the deployment handler code
 deploy-handler-upload-code:
 	@echo "deploy handler: upload code"
-	@scp deploy_handler/deploy.php  $(DEPLOY_USER_HOST):$(DEPLOY_HANDLER_FOLDER)/deploy.php
+	@scp $(SSH_KEY) deploy_handler/deploy.php  $(DEPLOY_USER_HOST):$(DEPLOY_HANDLER_FOLDER)/deploy.php
 
+# @make @deploy-handler-logs : view the deployment handler logs
 deploy-handler-logs:
 	@echo "deploy handler: view log"
-	@ssh $(DEPLOY_USER_HOST) "cat $(DEPLOY_HANDLER_FOLDER)/deploy.log"
+	@ssh $(SSH_KEY) $(DEPLOY_USER_HOST) "cat $(DEPLOY_HANDLER_FOLDER)/deploy.log"
 
+# @make deploy-handler-clean : clear the deployment handler logs
 deploy-handler-clean:
 	@echo "deploy handler: clean"
-	@ssh $(DEPLOY_USER_HOST) "rm $(DEPLOY_HANDLER_FOLDER)/*; touch $(DEPLOY_HANDLER_FOLDER)/deploy.log; chmod o+w $(DEPLOY_HANDLER_FOLDER)/deploy.log"
+	@ssh $(SSH_KEY) $(DEPLOY_USER_HOST) "mkdir $(DEPLOY_HANDLER_FOLDER) 2>/dev/null; rm $(DEPLOY_HANDLER_FOLDER)/*; touch $(DEPLOY_HANDLER_FOLDER)/deploy.log; chmod o+w $(DEPLOY_HANDLER_FOLDER)/deploy.log"
 
+# @make deploy-handler : upload the deployment handler
+deploy-handler: deploy-handler-all
+
+# upload the deployment handler
 deploy-handler-all: deploy-handler-clean deploy-handler-upload-key deploy-handler-upload-code
+
+# @make package : package the code into ma zip file
+package:
+	@echo "zip package code"
+	rm -f build/package.zip 2>/dev/null
+	zip -x build/* -x *.idea*  -x *.git*  -r build/package.zip  .
+	ls -las build/package.zip
+
+# @make deploy : deploy the packaged zip file
+deploy:
+	scp $(SSH_KEY) build/package.zip $(DEPLOY_USER_HOST):$(DEPLOY_HANDLER_FOLDER)/package.zip
+	ssh $(SSH_KEY) $(DEPLOY_USER_HOST) "unzip $(DEPLOY_HANDLER_FOLDER)/package.zip -d $(WEB_ROOT)/$(DEST)"
 
 .PHONY: help
 
