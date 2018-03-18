@@ -221,8 +221,8 @@ _**note:** the result will be JSON encoded, the above has been decoded for textu
 
 
 # 4. Integration tests
-how to run the automated tests for this system
-
+Test are written with PHPUnit and executed via Travis
+ ref: https://travis-ci.org/afakes/afakes-myob-devops
 
 ## 4.1 hello
 Explain what these tests test and why
