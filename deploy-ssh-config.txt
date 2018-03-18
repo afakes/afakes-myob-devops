@@ -1,0 +1,5 @@
+#GITHUB-DEPLOY
+Host github.com
+  User git
+  Hostname github.com
+  IdentityFile /home3/adamfake/public_html/deploy/deploy.rsa
