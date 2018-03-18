@@ -13,7 +13,7 @@ by Adam Fakes
 Bluehost Shared hosting service. Equally I could have use AWS; cloud-formation, EC2 & Lambda
  * Registered & connected to Travis CI build evaluation system. Although before this weekend (17th March 2018) I had not used TravisCI. We now 
 have a TravisCI build page along with a build status badge  
- * Developed a build & deploy system using the Makefile langauge. Added addirional annotations to the Makefile supporting code driven documentation 
+ * Developed a build & deploy system using the Makefile langauge. Added additional annotations to the Makefile supporting code driven documentation 
  * Created a simple web interface to discover and execute the API's
  
  
@@ -25,16 +25,26 @@ These instructions will get you a copy of the project up and running on your loc
 ## 1.2 Prerequisites
 What things you need to install the software, and how to install them
 
-* [git](https://git-scm.com/) - distributed version control system 
-* [Make](https://en.wikipedia.org/wiki/Makefile) - Makefile build system
-* [PHP](http://www.php.net/) - Language
-* [PHPUnit](https://phpunit.de/getting-started/phpunit-6.html) - Testing
-* [Apache](https://httpd.apache.org/) - Apache HTTP Server Project 
+ * [git](https://git-scm.com/) - distributed version control system 
+ * [Make](https://en.wikipedia.org/wiki/Makefile) - Makefile build system
+ * [PHP](http://www.php.net/) - Language
+ * [PHPUnit](https://phpunit.de/getting-started/phpunit-6.html) - Testing
+ * [Apache](https://httpd.apache.org/) - Apache HTTP Server Project 
 
+### 1.2.1 Other software
+Other software i used along the way to; manage code and develop code 
+ * [PHPStorm](https://www.jetbrains.com/phpstorm/) - Excellent PHP IDE 
+
+### 1.2.2 Online / remote systems
+Remote online systems used by the project are; 
+ * [bluehost.com](https://www.bluehost.com) shared hosting
+ * [Github](https://github.com/) - an implementation of the ```git``` distributed version control system
+ * [travis-ci.org](https://travis-ci.org/) - cCloud based CI / Build system
+   
 
 ## 1.3 Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## 1.4 Versioning
 
@@ -44,14 +54,11 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 * **Adam Fakes** - *Initial work* - [adam@datavi.co](mailto:adam@datavi.co), [linkedIn](https://www.linkedin.com/in/adamfakes/).  
 
-## 1.6 License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## 1.7 Acknowledgments
+## 1.6 Acknowledgments
 
 * [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds) 
 * [Tim Berners-lee](https://en.wikipedia.org/wiki/Tim_Berners-Lee)
+
 
 
 # 2. Installing
@@ -66,7 +73,7 @@ Here we describe how to retrieve the sources code and install any prerequisites
  - ```make deploy```
  - ```make VERSION=x.y.z bump-version```
 
- * note: ```make help``` returns a formatted list or targets and descriptions
+ * note: ```make help``` returns a formatted list of targets and descriptions
 
 
 ## 2.1 Clone 

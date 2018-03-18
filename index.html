@@ -21,6 +21,18 @@
             background-color: red;
             padding: 3pt;
         }
+
+        .material-icons.info {
+            background-color: white;
+            color:black;
+            padding: 3pt;
+        }
+        .material-icons.info:hover {
+            background-color: white;
+            color:black;
+            padding: 3pt;
+        }
+
     </style>
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -44,7 +56,7 @@
         <li><a href="#tabs-info">Information</a></li>
     </ul>
     <div id="tabs-info">
-        <p>To discover available endpoints navigate to <a target="_discover" href="api/">INDEX</a> endpoint, or other discovered end-points</p>
+        <p>To discover available endpoints navigate to <a target="_discover" href="api/">INDEX</a> endpoint, or other discovered end-points, or click the other tabs above to see the endpoints in action.</p>
         <table border="0">
             <tr>
                 <td><a title="open the Travis CI build results" target="_travis" href="https://travis-ci.org/afakes/afakes-myob-devops"><img style="height: 100px; width: 100px" src="https://cdn.worldvectorlogo.com/logos/travis-ci.svg"></a></td>
@@ -56,6 +68,13 @@
                 <td></td>
             </tr>
         </table>
+        <br>
+        <br>
+        Within the other tabs the icons have associated actions:
+        <ul>
+            <i class="material-icons info" >help_outline</i> - click to open the related help page<br>
+            <i class="material-icons info" >flight_takeoff</i> - to execute the API, results will return in the current page
+        </ul>
 
     </div>
 
