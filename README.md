@@ -276,7 +276,7 @@ Get some interesting information from the system. e.g. Code Commits, and last co
     "lastcommitsha": "81a52fd",
     "commitLog": [
       " 81a52fd|Adam Fakes|Sun Mar 18 12:09:53 2018 +1100|added commit log to metadata",
-      ....
+      "....",
       " 7e5a25a|Adam Fakes|Sat Mar 17 17:49:35 2018 +1100|version updated",
       " a2375fb|Adam Fakes|Sat Mar 17 14:01:17 2018 +1100|setup api endpoints",
       " 7e16e65|Adam Fakes|Sat Mar 17 13:06:19 2018 +1100|Initial commit"
