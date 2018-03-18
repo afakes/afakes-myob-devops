@@ -83,9 +83,8 @@ PHPUnit 7.0.2 by Sebastian Bergmann and contributors.
 ```
 
 
-
 ## 2.3 Test 
-execute local tests, and pre-eflight remote tests
+execute local tests, and pre-flight remote tests
 
 ```bash
 make test
@@ -146,56 +145,11 @@ Make a change to the code and commit it, push that change to the repo, this will
 
 
 
-
-# 5. Integration tests
-how to run the automated tests for this system
-
-
-# 5.1. test - Hello API
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-
-# 5.2. test - Health API
-
-
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-# 5.3. test - Metadata API
-
-
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-
-
-
-
-
-# 6. Endpoints
+# 3. Endpoints
 here we detail the endpoints, what they are, and what they are used for, and the expected output.
 
 
-## 6.1 hello
+## 3.1 hello
 
  * **Endpoint-url:** ```http://localhost/development/afakes-myob-devops/api/hello.php```
 
@@ -214,7 +168,7 @@ here we detail the endpoints, what they are, and what they are used for, and the
 _**note:** the result will be JSON encoded, the above has been decoded for textual clarity_
 
 
-## 6.2 health
+## 3.2 health
 
 * **Endpoint-url:** ```http://localhost/development/afakes-myob-devops/api/health.php```
 
@@ -236,7 +190,7 @@ _**note:** the result will be JSON encoded, the above has been decoded for textu
 _**note:** the result will be JSON encoded, the above has been decoded for textual clarity_
 
 
-## 6.3 metadata
+## 3.3 metadata
 
  * **Endpoint-url:** ```http://localhost/development/afakes-myob-devops/api/metadata.php```
 
@@ -256,6 +210,35 @@ _**note:** the result will be JSON encoded, the above has been decoded for textu
 
 _**note:** the result will be JSON encoded, the above has been decoded for textual clarity_
 
+
+
+
+# 4. Integration tests
+how to run the automated tests for this system
+
+
+## 4.1 hello
+Explain what these tests test and why
+
+ * **Endpoint-url:** ```http://localhost/development/afakes-myob-devops/api/hello.php```
+
+ * **test:** 
+
+
+```
+Give an example
+```
+
+
+
+
+### And coding style tests
+
+Explain what these tests test and why
+
+```
+Give an example
+```
 
 
 
