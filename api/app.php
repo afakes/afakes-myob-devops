@@ -30,15 +30,27 @@ function getLastCommit() {
 
 
 /**
- *  get the MD5 hash from the files, including datetime, size & user, ls -lsR | md5
+ *  get the a hash from the files, including datetime, size & user, ls -lsR | md5
  * if the folder has changed in anyway we can detect this.  i.e. FileCount, FileSizes, DateTimes, file owners, file groups, e.g. all file permissions
+ *
+ * The targeted system may not contain the hash type we want, so we need to check for it.
+ *
  *
  * @return string
  */
 function getCheckSum() {
 
-    // the host we have targeted does not have MD5 command line, so we are going to use sha1sum
-    $result = exec("ls -lsR .. | sha1sum");
-    return $result;
+    // the host we have targeted does not have MD5 command line, so we are going to use php internal,  we have local MacOS and remote Shared Hosted Linux wityh limited commands
+    // we are going to use PHP version of MD5
+
+    $result = array();
+    exec("ls -lsR ..", $result);
+    return md5(join("", $result));
 }
+
+
+
+
+
+
 
