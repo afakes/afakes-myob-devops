@@ -55,7 +55,7 @@ function getCheckSum() {
  */
 function getCommitLog() {
     $result = array();
-    exec('git log --pretty=format:\"%h%x09%an%x09%ad%x09%s\" | tr "\t" "~" | sed "s/\"/ /g" ', $result);
+    exec('git log --pretty=format:\"%h%x09%an%x09%ad%x09%s\" | tr "\t" "|" | sed "s/\"/ /g" ', $result);
     return $result;
 }
 
