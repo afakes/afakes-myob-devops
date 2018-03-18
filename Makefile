@@ -48,7 +48,7 @@ get-version:
 
 # @make [VERSION=x.y.z] bump-version : update version and commit it
 bump-version:
-	@echo $VERSION > api/version.txt
+	@echo $(VERSION) > api/version.txt
 	git commit -am "bump version to $(VERSION)"
 	git push origin master
 
