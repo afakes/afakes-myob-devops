@@ -11,10 +11,10 @@ $appName = "afakes-myob-devops";
  */
 function getVersionNumber() {
 
-    $versionFilename = "version.txt";
+    $versionPath = dirname(__FILE__)."/version.txt";
 
-    return file_exists($versionFilename)
-        ? trim(file_get_contents("version.txt"))
+    return file_exists($versionPath)
+        ? trim(file_get_contents($versionPath))
         : "unknown";
 }
 
