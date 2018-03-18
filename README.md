@@ -139,9 +139,9 @@ _package, upload keys, upload code_
  make DEST=foo deploy
  ```
   
-  The API's are now available at ```http://adamfakes.com/foo/api```
+  The API's are now available at ```http://adamfakes.com/staging/foo/api```
   
-  e.g. ```http://adamfakes.com/foo/api/health.php```
+  e.g. ```http://adamfakes.com/staging/foo/api/health.php```
  
  
 
@@ -182,17 +182,17 @@ here we detail the endpoints, what they are, and what they are used for, and the
 
  * **Endpoint-url:**
   
-   * ```http://adamfakes.com/afakes-myob-devops/api```
-   * ```http://adamfakes.com/afakes-myob-devops/api/hello.php```
+   * ```http://adamfakes.com/staging/afakes-myob-devops/api```
+   * ```http://adamfakes.com/staging/afakes-myob-devops/api/hello.php```
 
- * **Command line:** ```curl "http://adamfakes.com/afakes-myob-devops/api/hello.php"```
+ * **Command line:** ```curl "http://adamfakes.com/staging/afakes-myob-devops/api/hello.php"```
 
  * **Result**
 
 ```
 {
   "statusCode": 200,
-  "endpoint": "http://adamfakes.com/afakes-myob-devops/api/hello.php",
+  "endpoint": "http://adamfakes.com/staging/afakes-myob-devops/api/hello.php",
   "message": "Hello World"
 }
 ```
@@ -202,16 +202,16 @@ _**note:** the result will be JSON encoded, the above has been decoded for textu
 
 ## 3.2 health
 
- * **Endpoint-url:** ```http://adamfakes.com/afakes-myob-devops/api/health.php```
+ * **Endpoint-url:** ```http://adamfakes.com/staging/afakes-myob-devops/api/health.php```
 
- * **Command line:** ```curl "http://adamfakes.com/afakes-myob-devops/api/health.php"```
+ * **Command line:** ```curl "http://adamfakes.com/staging/afakes-myob-devops/api/health.php"```
 
  * **Result**
 
 ```
 {
   "statusCode": 200,
-  "endpoint": "http://adamfakes.com/afakes-myob-devops/api/health.php",
+  "endpoint": "http://adamfakes.com/staging/afakes-myob-devops/api/health.php",
   "result": {
     "status": "OK",
     "checksum": "3e539dda4ae1aa09313e3ebd285efc12"
@@ -224,15 +224,15 @@ _**note:** the result will be JSON encoded, the above has been decoded for textu
 
 ## 3.3 metadata
 
- * **Endpoint-url:** ```http://adamfakes.com/afakes-myob-devops/api/metadata.php```
+ * **Endpoint-url:** ```http://adamfakes.com/staging/afakes-myob-devops/api/metadata.php```
 
- * **Command line:** ```curl "http://adamfakes.com/afakes-myob-devops/api/metadata.php"```
+ * **Command line:** ```curl "http://adamfakes.com/staging/afakes-myob-devops/api/metadata.php"```
 
  * **result**
 ```
 {
   "statusCode": 200,
-  "endpoint": "http://adamfakes.com/afakes-myob-devops/api/metadata.php",
+  "endpoint": "http://adamfakes.com/staging/afakes-myob-devops/api/metadata.php",
   "myapplication": {
     "version": "1.5a",
     "description": "pre-interview technical test",

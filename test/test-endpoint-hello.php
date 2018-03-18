@@ -9,10 +9,11 @@
 class testEndpointHello extends \PHPUnit\Framework\TestCase
 {
 
+    private $endpointBase = "http://adamfakes.com/staging/afakes-myob-devops/api";
     private $endpointData = null;
 
     public function setUp() {
-        $this->endpointData = file_get_contents("http://adamfakes.com/afakes-myob-devops/api/hello.php");
+        $this->endpointData = file_get_contents("{$this->endpointBase}/hello.php");
     }
 
     public function testEndpointHelloContent()

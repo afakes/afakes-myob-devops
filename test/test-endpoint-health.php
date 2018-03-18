@@ -9,10 +9,13 @@
 class testEndpointHealth extends \PHPUnit\Framework\TestCase
 {
 
+
+    private $endpointBase = "http://adamfakes.com/staging/afakes-myob-devops/api";
     private $endpointData = null;
 
+
     public function setUp() {
-        $this->endpointData = file_get_contents("http://adamfakes.com/afakes-myob-devops/api/health.php");
+        $this->endpointData = file_get_contents("{$this->endpointBase}/health.php");
     }
 
     public function testEndpointHealthContent()
